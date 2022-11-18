@@ -12,8 +12,14 @@ import {
   Switch,
 } from "@mui/material";
 import { ModeNight } from "@mui/icons-material";
+import { Dispatch } from "react";
 
-const Sidebar = () => {
+type Props = {
+  mode: string;
+  setMode: Dispatch<React.SetStateAction<string>>;
+};
+
+const Sidebar = ({ mode, setMode }: Props) => {
   return (
     <List
       sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
@@ -54,7 +60,9 @@ const Sidebar = () => {
         <ListItemIcon>
           <ModeNight />
         </ListItemIcon>
-        <Switch />
+        <Switch
+          onChange={(e) => setMode(mode === "light" ? "dark" : "light")}
+        />
       </ListItemButton>
     </List>
   );
